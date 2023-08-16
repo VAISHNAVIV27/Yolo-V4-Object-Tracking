@@ -2,6 +2,8 @@ import os
 # comment out below line to enable tensorflow logging outputs
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import time
+import platform
+import psutil
 import tensorflow as tf
 physical_devices = tf.config.experimental.list_physical_devices('GPU')
 if len(physical_devices) > 0:
@@ -157,10 +159,10 @@ def main(_argv):
         class_names = utils.read_class_names(cfg.YOLO.CLASSES)
 
         # by default allow all classes in .names file
-        allowed_classes = list(class_names.values())
+        # allowed_classes = list(class_names.values())
         
         # custom allowed classes (uncomment line below to customize tracker for only people)
-        # allowed_classes = ['person']
+        allowed_classes = ['person']
 
         # loop through objects and use class index to get class name, allow only classes in allowed_classes list
         names = []
@@ -223,6 +225,9 @@ def main(_argv):
         print("FPS: %.2f" % fps)
         result = np.asarray(frame)
         result = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+        cv2.putText(frame, f"Machine type: {platform.machine()}", (1087, 828), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0xFF, 0xFF), 3)
+        cv2.putText(frame, f"Number of physical cores: {psutil.cpu_count(logical=False)}", (1153, 979), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 255), thickness=2)
+
         
         if not FLAGS.dont_show:
             cv2.imshow("Output Video", result)
