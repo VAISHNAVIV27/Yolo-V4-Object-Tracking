@@ -34,6 +34,6 @@ By default the code is setup to track all 80 or so classes from the coco dataset
 
 To filter a custom selection of classes all you need to do is comment out line 160 and uncomment out line 163 of [object_tracker.py](https://github.com/VAISHNAVIV27/Yolo-V4-Object-Tracking/blob/main/object_tracker.py) Within the list `allowed_classes` just add whichever classes you want the tracker to track. The classes can be any of the 80 that the model is trained on, see which classes you can track in the file [data/classes/coco.names](https://github.com/VAISHNAVIV27/Yolo-V4-Object-Tracking/blob/main/data/classes/coco.names)
 
-# The demo video showing the system in action on a low compute power device
-By default the output video is recorded under the [/outputs](https://github.com/VAISHNAVIV27/Yolo-V4-Object-Tracking/blob/main/outputs)
+# The Output video showing the system in action on a low compute power device
+By default the output video is saved under [/outputs](https://github.com/VAISHNAVIV27/Yolo-V4-Object-Tracking/blob/main/outputs)
 
